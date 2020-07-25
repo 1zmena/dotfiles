@@ -1,0 +1,107 @@
+conky.config = {
+
+--Add comment#
+	own_window = true,
+	own_window_type = 'normal',
+	own_window_transparent = true,
+	own_window_argb_visual = true,
+	own_window_argb_value = 255,
+	own_window_hints = 'undecorated,skip_taskbar,skip_pager,below,sticky',
+-- own_window_type = 'desktop',
+
+	background = true,
+	use_xft = true,
+	font = 'Liberation mono:size=10',
+	xftalpha = 0.8,
+	update_interval = 1,
+	total_run_times = 0,
+	double_buffer = true,
+	draw_graph_borders = true,
+	stippled_borders = 1,
+	border_width = 1,
+	default_color = '#4BB3D6',
+	alignment = 'top_right',
+	gap_x = 5,
+	gap_y = 50,
+
+-- Misc Console #
+    out_to_console = false,
+    out_to_stderr = false,
+    extra_newline = false,
+
+	no_buffers = true,
+	cpu_avg_samples = 2,
+	net_avg_samples = 2,
+	override_utf8_locale = true,
+	use_spacer = 'right',
+	maximum_width = 400,
+	minimum_height = 1200,
+	uppercase = true,
+
+};
+
+conky.text = [[
+#leet chars: ┤┤└└┴┴┐┐││┘┘┌┌├├┬┬┼┼┴┴── ││ ▽▼△▲▵▴▾▿
+${alignc}${font xftfont monospace:size=16} Void linux ${font}
+${alignr}${offset 4} └───────────${sysname}${voffset -4}
+${alignr}${offset -20}│
+${alignr}${offset -20}${machine} ─┤
+${alignr}${offset -20}│   │
+${alignr}${offset -20}kernel < ${kernel} > ─┘   │
+${alignr}${offset -20}  │
+${alignr}${offset -20}system ─┤${voffset -8}
+${alignr}${offset -20}│    │
+${alignr}${offset -20}cpu ─┤    │
+${alignr}${offset -20}used ─┤    │    │
+${alignr}${offset -20} < ${cpu cpu 0}% > cpu0 ─┤    │    │    │
+${alignr}${offset -20} < ${cpu cpu 1}% > cpu1 ─┤    │    │    │
+${alignr}${offset -20} < ${cpu cpu 2}% > cpu2 ─┤    │    │    │
+${alignr}${offset -20} < ${cpu cpu 3}% > cpu3 ─┤    │    │    │
+${alignr}${offset -20} < ${cpu cpu 4}% > cpu4 ─┤    │    │    │
+${alignr}${offset -20} < ${cpu cpu 5}% > cpu5 ─┘    │    │    │${voffset -8}
+${alignr}${offset -20}│    │    │
+${alignr}${offset -20} freq ─┤    │    │
+${alignr}${offset -20}  < ${freq 0}mhz > cpu0 ─┤    │    │    │
+${alignr}${offset -20}  < ${freq 1}mhz > cpu1 ─┤    │    │    │
+${alignr}${offset -20}  < ${freq 2}mhz > cpu2 ─┤    │    │    │
+${alignr}${offset -20}  < ${freq 3}mhz > cpu3 ─┤    │    │    │
+${alignr}${offset -20}  < ${freq 4}mhz > cpu4 ─┤    │    │    │
+${alignr}${offset -4}  < ${freq 5}mhz > cpu5 ─┘    │    │    │  
+${alignr}${offset -20}│    │    │
+${alignr}${offset -12} < $loadavg > load ─┤    │    │ 
+${alignr}${offset -20}│    │    |
+${alignr}${offset -20}< ${cpugraph 15,165 BA0B0B FC0707} > ─┘    │    │
+${alignr}${offset -20}│    │${voffset -8}
+${alignr}${offset -20}│    │${voffset -8}
+${alignr}${offset -20}temperatures ─┤    │
+${alignr}${offset -20}cpu ─┤    │    │
+${alignr}${offset -20}< ${execi 5 sensors|grep 'Core 0'| awk -F'+' '{print $2}' | awk -F'.' '{print $1}'} °C > CPU0 ─┤    │    │    │
+${alignr}${offset -20}< ${execi 5 sensors|grep 'Core 1'| awk -F'+' '{print $2}' | awk -F'.' '{print $1}'} °C > CPU1 ─┤    │    │    │
+${alignr}${offset -20}< ${execi 5 sensors|grep 'Core 2'| awk -F'+' '{print $2}' | awk -F'.' '{print $1}'} °C > CPU2 ─┤    │    │    │
+${alignr}${offset -20}< ${execi 5 sensors|grep 'Core 3'| awk -F'+' '{print $2}' | awk -F'.' '{print $1}'} °C > CPU3 ─┤    │    │    │
+${alignr}${offset -20}< ${execi 5 sensors|grep 'Core 4'| awk -F'+' '{print $2}' | awk -F'.' '{print $1}'} °C > CPU4 ─┤    │    │    │
+${alignr}${offset -20}< ${execi 5 sensors|grep 'Core 5'| awk -F'+' '{print $2}' | awk -F'.' '{print $1}'} °C > CPU5 ─┘    │    │    │
+${alignr}${offset -20}│    │    │${voffset -8}
+${alignr}${offset -20}gpu ─┘    │    │
+${alignr}${offset -12}< ${execi 5 nvidia-settings -t -q [gpu:0]/GPUCoreTemp} °C > GPU 1 ─┘         │    │ 
+${alignr}${offset -20}│    │${voffset -8}
+${alignr}${offset -20} ram ─┤    │
+${alignr}${offset -4} < $memperc% > used ─┘    │    │  
+${alignr}${offset -20}│    │
+${alignr}${offset -4} Disk Useage ─┘    │  
+${alignr}${offset -4}< ${fs_used /home}/${fs_size /home} > /home ─┤         │  
+${alignr}${offset -4}< ${fs_bar 5,120 /home} > ─┘     │         │  
+${alignr}${offset -4}< ${fs_used /}/${fs_size /} > /root ─┘         │  
+${alignr}${offset -20}< ${fs_bar 5,120 /} > ─┘               │
+${alignr}${offset -12}  NETWORK ─┘ 
+${alignr}${offset -48}< ${upspeed eno2}/s /${totalup eno2}> up ─┤
+${alignr}${offset -8} │   │     
+${alignr}${offset -48}< ${upspeedgraph eno2 14,165 BA0B0B FC0707} > ─┘   │
+${alignr}${offset 8}│       
+${alignr}${offset -48}< ${downspeed eno2}/s /${totaldown eno2}> down ─┘
+${alignr}│           
+${alignr}${offset -88}< ${downspeedgraph eno2 14,165 136311 11B014} > ─┘
+
+#${alignc}inet < ${execi 60 curl http://ipecho.net/plain} >
+#${alignc} lan  < ${addr eno2} >
+]];
